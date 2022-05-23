@@ -17,10 +17,11 @@
       class="tvShows d-flex flex-wrap">
         <h1 class="w-100">Serie Tv</h1>
         <TvShowsComponent
-        v-for="(tvShow, index) in tvShowsToDisplay" :key="`film-${index}`"
+        v-for="(tvShow, index) in tvShowsToDisplay" :key="`tvShow-${index}`"
         :tvShow = tvShow
         />
       </div>
+
     </div>
   </main>
 </template>
@@ -42,6 +43,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+main{
+  background-color: #f5f5f1;
+}
 .container{
   border: 1px solid green;
 }

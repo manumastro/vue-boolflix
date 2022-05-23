@@ -1,5 +1,7 @@
 <template>
-  <div class="d-flex flex-column film-card">
+  <div class="d-flex flex-column tvShow-card mb-5">
+    <img :src="tvShow.img" :alt="tvShow.title">
+
     <span>{{tvShow.title}}</span>
     <span>{{tvShow.original_title}}</span>
     <span v-if="tvShow.language === 'en' || tvShow.language === 'ja' || tvShow.language === 'it'">
@@ -32,9 +34,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.film-card{
-  flex-basis: calc(100% / 8);
-  margin: 10px;
+.tvShow-card{
+  width: calc(100% / 4 - 50px);
+  margin: 0 25px;
   border: 1px solid red;
   span{
     border: 1px solid blue;

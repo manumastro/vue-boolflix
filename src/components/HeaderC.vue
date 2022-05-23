@@ -38,7 +38,7 @@ export default {
 <style lang="scss" scoped>
   header{
     height: 100px;
-    background-image: linear-gradient(#060606, #292929);
+    background-color: #221f1f;
     #logo{
       margin-right: 20vw;
     }

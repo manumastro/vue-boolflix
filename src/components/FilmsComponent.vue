@@ -1,5 +1,6 @@
 <template>
-  <div class="d-flex flex-column film-card">
+  <div class="d-flex flex-column film-card mb-5">
+    <img :src="film.img" :alt="film.title">
     <span>{{film.title}}</span>
     <span>{{film.original_title}}</span>
     <span v-if="film.language === 'en' || film.language === 'ja' || film.language === 'it'">
@@ -8,7 +9,7 @@
       <img v-else-if="film.language === 'it'" :src="flags.it" :alt="film.language">
     </span>
     <span v-else>{{film.language}}</span>
-    <span>{{film.vote}}</span>
+    <span class="stars"><font-awesome-icon v-for="(n, index) in film.vote" :key="`n-${index}`" icon="fa-solid fa-star" /></span>
   </div>
 </template>
 
@@ -33,13 +34,17 @@ export default {
 
 <style lang="scss" scoped>
 .film-card{
-  flex-basis: calc(100% / 8);
-  margin: 10px;
+  width: calc(100% / 4 - 50px);
+  margin: 0 25px;
+  
   border: 1px solid red;
   span{
     border: 1px solid blue;
     img{
       width: 30px;
+    }
+    &.stars{
+      color: rgb(209, 209, 54);
     }
   }
 }

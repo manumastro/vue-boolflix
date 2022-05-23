@@ -64,18 +64,20 @@ export default {
     },
     decomposeMoviesArray(){
       this.apiMovies = this.apiResult.map(el => ({
+        img: `https://image.tmdb.org/t/p/w342${el.poster_path}`,
         title: el.title,
         original_title: el.original_title,
         language: el.original_language,
-        vote: el.vote_average
+        vote: Math.round(el.vote_average / 2),
       }))
     },
     decomposeTvArray(){
       this.apiTvShows = this.apiResult.map(el => ({
+        img: `https://image.tmdb.org/t/p/w342${el.poster_path}`,
         title: el.name,
         original_title: el.original_name,
         language: el.original_language,
-        vote: el.vote_average
+        vote: Math.round(el.vote_average / 2),
       }))
     } 
   },
