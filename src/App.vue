@@ -1,7 +1,9 @@
 <template>
   <div id="app">
     <HeaderC @search="searchFunction" />
-    <MainC :filmsToDisplay = apiObjectProp />
+    <MainC
+    :filmsToDisplay = apiMovies 
+    :tvShowsToDisplay = apiTvShows /> 
   </div>
 </template>
 
@@ -18,34 +20,60 @@ export default {
   },
   data(){
     return{
-      inputToSearch: '',
+      apiUrlMovie: 'https://api.themoviedb.org/3/search/movie',
+      apiUrlTv: 'https://api.themoviedb.org/3/search/tv',
+      apiParams: {
+        api_key: 'aaeab3237d6878f2cb8d8227529ccffd',
+        language: 'it-IT',
+        query: ''
+      },
       apiResult: [],
-      apiObjectProp: []
+      apiMovies: [],
+      apiTvShows: [],
     }
   },
   methods:{
     searchFunction(searchInput){
-      this.inputToSearch = searchInput;
-      this.getApi();
+      this.apiParams.query = searchInput;
+      this.getApiMovies();
+      this.getApiTv();
     },
-    getApi(){
-      axios.get(`https://api.themoviedb.org/3/search/movie?api_key=aaeab3237d6878f2cb8d8227529ccffd&language=it-IT&query=${this.inputToSearch}`)
+    getApiMovies(){
+      axios.get(this.apiUrlMovie, {
+        params: this.apiParams
+      })
       .then( result => {
         this.apiResult = result.data.results
-        this.decompose();
+        this.decomposeMoviesArray();
       })
       .catch( error=> {
         console.log(error);
       })
     },
-    decompose(){
-      // this.apiResult.forEach((el, index) => {
-        
-      //   this.apiObjectProp = {title : el[index].title} 
-      // })
-      this.apiObjectProp = this.apiResult.map(el => ({
+    getApiTv(){
+      axios.get(this.apiUrlTv, {
+        params: this.apiParams
+      })
+      .then( result => {
+        this.apiResult = result.data.results
+        this.decomposeTvArray();
+      })
+      .catch( error=> {
+        console.log(error);
+      })
+    },
+    decomposeMoviesArray(){
+      this.apiMovies = this.apiResult.map(el => ({
         title: el.title,
         original_title: el.original_title,
+        language: el.original_language,
+        vote: el.vote_average
+      }))
+    },
+    decomposeTvArray(){
+      this.apiTvShows = this.apiResult.map(el => ({
+        title: el.name,
+        original_title: el.original_name,
         language: el.original_language,
         vote: el.vote_average
       }))

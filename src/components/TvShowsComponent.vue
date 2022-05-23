@@ -1,14 +1,14 @@
 <template>
   <div class="d-flex flex-column film-card">
-    <span>{{film.title}}</span>
-    <span>{{film.original_title}}</span>
-    <span v-if="film.language === 'en' || film.language === 'ja' || film.language === 'it'">
-      <img v-if="film.language === 'en'" :src="flags.en" :alt="film.language">
-      <img v-else-if="film.language === 'ja'" :src="flags.ja" :alt="film.language">
-      <img v-else-if="film.language === 'it'" :src="flags.it" :alt="film.language">
+    <span>{{tvShow.title}}</span>
+    <span>{{tvShow.original_title}}</span>
+    <span v-if="tvShow.language === 'en' || tvShow.language === 'ja' || tvShow.language === 'it'">
+      <img v-if="tvShow.language === 'en'" :src="flags.en" :alt="tvShow.language">
+      <img v-else-if="tvShow.language === 'ja'" :src="flags.ja" :alt="tvShow.language">
+      <img v-else-if="tvShow.language === 'it'" :src="flags.it" :alt="tvShow.language">
     </span>
-    <span v-else>{{film.language}}</span>
-    <span>{{film.vote}}</span>
+    <span v-else>{{tvShow.language}}</span>
+    <span>{{tvShow.vote}}</span>
   </div>
 </template>
 
@@ -26,7 +26,7 @@ export default {
     }
   },
   props:{
-    film: Object
+    tvShow: Object
   }
 }
 </script>

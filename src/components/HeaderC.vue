@@ -29,6 +29,7 @@ export default {
   methods:{
     searchFunction(){
       this.$emit('search', this.searchInput);
+      this.searchInput = ''
     }
   }
 }

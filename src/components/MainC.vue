@@ -1,25 +1,48 @@
 <template>
-  <main>
-    <div class="container d-flex">
-      <FilmsComponent
-      v-for="(film, index) in filmsToDisplay" :key="`film-${index}`"
-      :film = film
-      />
+  <main class="pt-5">
+    <div class="container">
+
+      <div
+      v-if="filmsToDisplay.length > 0" 
+      class="films-container d-flex flex-wrap mb-5">
+        <h1 class="w-100">Film</h1>
+        <FilmsComponent
+        v-for="(film, index) in filmsToDisplay" :key="`film-${index}`"
+        :film = film
+        />
+      </div>
+
+      <div
+      v-if="tvShowsToDisplay.length > 0" 
+      class="tvShows d-flex flex-wrap">
+        <h1 class="w-100">Serie Tv</h1>
+        <TvShowsComponent
+        v-for="(tvShow, index) in tvShowsToDisplay" :key="`film-${index}`"
+        :tvShow = tvShow
+        />
+      </div>
     </div>
   </main>
 </template>
 
 <script>
-import FilmsComponent from './FilmsComponent.vue'
+import FilmsComponent from './FilmsComponent.vue';
+import TvShowsComponent from './TvShowsComponent.vue';
 export default {
-  components: { FilmsComponent },
+  components: {
+    FilmsComponent,
+    TvShowsComponent
+  },
   name: 'MainC',
   props: {
-    filmsToDisplay: Array
+    filmsToDisplay: Array,
+    tvShowsToDisplay: Array
   }
 }
 </script>
 
-<style>
-
+<style lang="scss" scoped>
+.container{
+  border: 1px solid green;
+}
 </style>
