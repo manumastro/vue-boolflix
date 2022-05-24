@@ -10,7 +10,7 @@
       <img v-else-if="tvShow.language === 'it'" :src="flags.it" :alt="tvShow.language">
     </span>
     <span v-else>{{tvShow.language}}</span>
-    <span>{{tvShow.vote}}</span>
+    <span class="stars"><font-awesome-icon v-for="(n, index) in tvShow.vote" :key="`n-${index}`" icon="fa-solid fa-star" /></span>
   </div>
 </template>
 
@@ -42,6 +42,9 @@ export default {
     border: 1px solid blue;
     img{
       width: 30px;
+    }
+    &.stars{
+      color: rgb(209, 209, 54);
     }
   }
 }

@@ -44,9 +44,10 @@ export default {
 
 <style lang="scss" scoped>
 main{
+  min-height: calc(100vh - 100px);
   background-color: #f5f5f1;
 }
-.container{
-  border: 1px solid green;
-}
+// .container{
+//   border: 1px solid green;
+// }
 </style>
