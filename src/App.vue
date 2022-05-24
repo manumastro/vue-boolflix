@@ -34,9 +34,11 @@ export default {
   },
   methods:{
     searchFunction(searchInput){
-      this.apiParams.query = searchInput;
-      this.getApiMovies();
-      this.getApiTv();
+      if (searchInput.length > 0) {
+        this.apiParams.query = searchInput;
+        this.getApiMovies();
+        this.getApiTv();
+      }
     },
     getApiMovies(){
       axios.get(this.apiUrlMovie, {
@@ -69,6 +71,7 @@ export default {
         original_title: el.original_title,
         language: el.original_language,
         vote: Math.round(el.vote_average / 2),
+        overview: el.overview
       }))
     },
     decomposeTvArray(){
@@ -78,6 +81,7 @@ export default {
         original_title: el.original_name,
         language: el.original_language,
         vote: Math.round(el.vote_average / 2),
+        overview: el.overview
       }))
     } 
   },
